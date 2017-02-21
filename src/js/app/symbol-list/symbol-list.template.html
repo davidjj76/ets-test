@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <select ng-model="$ctrl.currency">
+                <option value="">ALL</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+                <option value="USD">USD</option>
+            </select>
+            <select ng-model="$ctrl.risk_family">
+                <option value="">ALL</option>
+                <option value="Balanced">Balanced</option>
+                <option value="Equity">Equity</option>
+            </select>
+        </div>
+        <div class="col-md-10 list-group">
+            <a ng-repeat="symbol in $ctrl.symbols | filter:$ctrl.currency | filter:$ctrl.risk_family" href="#!/symbols/{{symbol.id}}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{symbol.name}}</h4>
+                <p class="list-group-item-text">{{symbol.currency}}</p>
+                <p class="list-group-item-text">{{symbol.risk_family}}</p>
+            </a>
+        </div>
+    </div>
+</div>
