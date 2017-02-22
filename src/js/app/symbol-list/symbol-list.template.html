@@ -1,17 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-            <select ng-model="$ctrl.currency">
-                <option value="">ALL</option>
-                <option value="EUR">EUR</option>
-                <option value="JPY">JPY</option>
-                <option value="USD">USD</option>
+            <select ng-model="$ctrl.currency" ng-options="symbol.currency as symbol.currency for symbol in $ctrl.symbols | unique:'currency'">
             </select>
-            <select ng-model="$ctrl.risk_family">
-                <option value="">ALL</option>
-                <option value="Balanced">Balanced</option>
-                <option value="Equity">Equity</option>
-            </select>
+            <select ng-model="$ctrl.risk_family" ng-options="symbol.risk_family as symbol.risk_family for symbol in $ctrl.symbols | unique:'risk_family'">
         </div>
         <div class="col-md-10 list-group">
             <a ng-repeat="symbol in $ctrl.symbols | filter:$ctrl.currency | filter:$ctrl.risk_family" href="#!/symbols/{{symbol.id}}" class="list-group-item">

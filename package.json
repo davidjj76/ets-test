@@ -8,15 +8,19 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "angular": "^1.6.2",
+    "angular-resource": "^1.6.2",
     "angular-route": "^1.6.2",
+    "bootstrap-sass": "^3.3.7"
+  },
+  "devDependencies": {
     "autoprefixer": "^6.7.4",
-    "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.18.8",
     "browserify": "^14.1.0",
     "cssnano": "^3.10.0",
     "gulp": "^3.9.1",
+    "gulp-angular-embed-templates": "^2.3.0",
     "gulp-buffer": "0.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-notify": "^3.0.0",

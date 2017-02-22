@@ -13,6 +13,7 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var rename = require('gulp-rename');
+var embedTemplates = require('gulp-angular-embed-templates');
 
 // tasks configuration variables
 
@@ -28,7 +29,7 @@ var sassConfig = {
 // js task
 var jsConfig = {
 	taskName: 'concat-js',
-	watchFiles: ['./src/js/*.js', './src/js/**/*.js'],
+	watchFiles: ['./src/js/**/*.js', './src/js/**/*.html'],
 	entryPoint: './src/js/main.js',
 	concatFile: 'main.js',
 	dest: './dist/'
@@ -60,7 +61,7 @@ gulp.task('default', [
 	    gulp.watch(jsConfig.watchFiles, [jsConfig.taskName]);
 
 	    // watch html files changes and reload server
-	    gulp.watch(['./*.html', './src/js/**/*.html'], function() {
+	    gulp.watch('./*.html', function() {
 	    	browserSync.reload();
 	    	notify().write('Browser reloaded!!!');
 	    });
@@ -91,6 +92,7 @@ gulp.task(jsConfig.taskName, function() {
 	}))
 	.pipe(buffer())
 	.pipe(sourcemaps.init({ loadMaps: true }))
+	.pipe(embedTemplates({ skipErrors: true }))
 	.pipe(gulp.dest(jsConfig.dest))
 	.pipe(rename(uglifyConfig.uglifyFile))
 	.pipe(uglify())

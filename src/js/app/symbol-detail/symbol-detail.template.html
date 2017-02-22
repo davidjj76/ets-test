@@ -1,5 +1,12 @@
 <div class="container-fluid">
     <div class="row">
-        <h1>Symbol detail</h1>
+        <h1>{{$ctrl.symbol.name}}</h1>
+        <h2>{{$ctrl.symbol.currency.name + '(' + $ctrl.symbol.currency.symbol + ')'}}</h2>
+        <h3>{{$ctrl.symbol.issuer.name}}</h3>
+        <h3>{{$ctrl.symbol.isin}}</h3>
+        <h3>{{$ctrl.symbol.region | names:'name'}}</h3>
+        <h3>{{$ctrl.symbol.risk_family | names:'name'}}</h3>
+        <h3>{{$ctrl.symbol.sector | names:'name'}}</h3>
+        <h6>{{$ctrl.symbol.prices}}</h6>
     </div>
 </div>

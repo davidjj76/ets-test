@@ -5,6 +5,7 @@ var angular = require('angular');
 // Create module
 var etsApp = angular.module('etsApp', [
   'ngRoute',
+  'core',
   'symbolList',
   'symbolDetail'
 ]);
