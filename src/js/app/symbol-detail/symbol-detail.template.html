@@ -2,6 +2,9 @@
     <div class="row">
         <h1>{{$ctrl.symbol.name}}</h1>
         <h2>{{$ctrl.symbol.currency.name + '(' + $ctrl.symbol.currency.symbol + ')'}}</h2>
+        <a ng-show="!$ctrl.firstSymbol" href="#!/symbols/{{$ctrl.previousSymbol.id}}">{{$ctrl.previousSymbol.name}}</a>
+        <a href="#!/symbols">Volver al listado</a>
+        <a ng-show="!ctrl.lastSymbol" href="#!/symbols/{{$ctrl.nextSymbol.id}}">{{$ctrl.nextSymbol.name}}</a>
         <h3>{{$ctrl.symbol.issuer.name}}</h3>
         <h3>{{$ctrl.symbol.isin}}</h3>
         <h3>{{$ctrl.symbol.region | names:'name'}}</h3>

@@ -14,15 +14,22 @@ angular.
 	    		self.symbol = symbol;
 		      	if(appGlobals.symbols.length) {
 	  		  		self.symbols = appGlobals.symbols;
+	  		  		var actualSymbolIndex = self.symbols.map(function(symbol) {
+	  		  			return	symbol.id;
+	  		  		}).indexOf(self.symbol.id);
+	  		  		self.firstSymbol = (actualSymbolIndex === 0);
+	  		  		self.lastSymbol = (actualSymbolIndex === self.symbols.length - 1);
+	  		  		self.previousSymbol = (self.firstSymbol) ? {} : self.symbols[actualSymbolIndex - 1];
+	  		  		self.nextSymbol = (self.lastSymbol) ? {} : self.symbols[actualSymbolIndex + 1];
 		      	} else {
-					Symbol.query(function(symbols) {
-			          appGlobals.symbols = symbols.map(function(symbol) {
-			            return { id: symbol.id, name: symbol.name}
-			          });
-			          self.symbols = appGlobals.symbols;
-					}, function() {
+					// Symbol.query(function(symbols) {
+			  //         appGlobals.symbols = symbols.map(function(symbol) {
+			  //           return { id: symbol.id, name: symbol.name}
+			  //         });
+			  //         self.symbols = appGlobals.symbols;
+					// }, function() {
 			      		redirectTo('/#!/symbols');
-					})
+					// })
 	    		}
 	    	},
 	    	function() {
