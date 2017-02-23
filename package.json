@@ -12,7 +12,8 @@
     "angular": "^1.6.2",
     "angular-resource": "^1.6.2",
     "angular-route": "^1.6.2",
-    "bootstrap-sass": "^3.3.7"
+    "bootstrap-sass": "^3.3.7",
+    "d3": "^4.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.4",

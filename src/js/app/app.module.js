@@ -8,7 +8,7 @@ var etsApp = angular.module('etsApp', [
   'core',
   'symbolList',
   'symbolDetail'
-]);
+]).value('appGlobals', { symbols: [] });
 
 // Require config
 require('./app.config.js');

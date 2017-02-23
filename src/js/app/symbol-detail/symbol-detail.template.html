@@ -7,6 +7,7 @@
         <h3>{{$ctrl.symbol.region | names:'name'}}</h3>
         <h3>{{$ctrl.symbol.risk_family | names:'name'}}</h3>
         <h3>{{$ctrl.symbol.sector | names:'name'}}</h3>
-        <h6>{{$ctrl.symbol.prices}}</h6>
+        <div>{{$ctrl.symbols}}</div>
+        <line-chart prices="{{$ctrl.symbol.prices}}" currency="{{$ctrl.symbol.currency.symbol}}"></line-chart>
     </div>
 </div>
