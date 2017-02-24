@@ -1,9 +1,13 @@
 'use strict';
 
 var angular = require('angular');
+require('angular-aria');
+require('angular-animate');
+require('angular-material');
 
 // Create module
 var etsApp = angular.module('etsApp', [
+  'ngMaterial',
   'ngRoute',
   'core',
   'symbolList',

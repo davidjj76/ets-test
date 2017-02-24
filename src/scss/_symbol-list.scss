@@ -1,0 +1,15 @@
+$max_width: 960px;
+
+.symbol-list {
+  margin: 0 auto;
+  max-width: $max_width; 
+}
+
+.symbol-list-filters {
+  padding: 20px;
+  text-align: center;
+}
+
+.symbol-list-items {
+  padding: 0;
+}

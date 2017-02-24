@@ -1,16 +1,47 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-            <select ng-model="$ctrl.currency" ng-options="symbol.currency as symbol.currency for symbol in $ctrl.symbols | unique:'currency'">
-            </select>
-            <select ng-model="$ctrl.risk_family" ng-options="symbol.risk_family as symbol.risk_family for symbol in $ctrl.symbols | unique:'risk_family'">
+<!-- Symbols list -->
+<div layout="column" ng-cloak class="symbol-list" layout-file>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            Symbols list
         </div>
-        <div class="col-md-10 list-group">
-            <a ng-repeat="symbol in $ctrl.symbols | filter:$ctrl.currency | filter:$ctrl.risk_family" href="#!/symbols/{{symbol.id}}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{symbol.name}}</h4>
-                <p class="list-group-item-text">{{symbol.currency}}</p>
-                <p class="list-group-item-text">{{symbol.risk_family}}</p>
-            </a>
+    </md-toolbar>
+    <md-content flex>
+        <!-- Filters -->
+        <div layout="column" layout-gt-xs="row" class="symbol-list-filters">
+            <div flex>
+                <!-- Currencies filter -->
+                <md-input-container>
+                    <label>Currencies</label>
+                    <md-select ng-model="$ctrl.currencies" multiple>
+                        <md-option ng-repeat="symbol in $ctrl.symbols | unique:'currency'" ng-value="symbol.currency" ng-selected="true">
+                            {{symbol.currency}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex>
+                <!-- Risk families filter -->
+                <md-input-container>
+                    <label>Risk Families</label>
+                    <md-select ng-model="$ctrl.risk_families" multiple>
+                        <md-option ng-repeat="symbol in $ctrl.symbols | unique:'risk_family'" ng-value="symbol.risk_family" ng-selected="true">
+                            {{symbol.risk_family}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
         </div>
-    </div>
+        <md-divider></md-divider>
+        <md-list class="symbol-list-items">
+            <md-list-item class="secondary-button-padding md-3-line" ng-repeat="symbol in $ctrl.symbols | filter:$ctrl.filterSymbol()" ng-href="#!/symbols/{{symbol.id}}">
+                <div class="md-list-item-text">
+                    <h3><span>{{symbol.name}}<span></h3>
+                    <p>Currency: {{symbol.currency}}</p>
+                    <p>Risk Family: {{symbol.risk_family}}</p>
+                </div>
+                <md-button class="md-primary" ng-href="#!/symbols/{{symbol.id}}">View symbol</md-button>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </div>

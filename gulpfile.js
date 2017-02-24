@@ -23,7 +23,7 @@ var sassConfig = {
 	watchFiles: './src/scss/*.scss',
 	entryPoint: './src/scss/style.scss',
 	dest: './dist/',
-	includePaths: ['./node_modules/bootstrap-sass/assets/stylesheets']
+	includePaths: ['./node_modules/angular-material/modules/scss']
 };
 
 // js task
