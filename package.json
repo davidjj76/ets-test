@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-local-storage": "^0.5.2",
     "angular-resource": "^1.6.2",
     "angular-route": "^1.6.2",
     "bootstrap-sass": "^3.3.7",
-    "d3": "^4.6.0"
+    "d3": "^4.6.0",
+    "momentjs": "^2.0.0",
+    "shortid": "^2.2.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.4",

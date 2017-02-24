@@ -1,0 +1,17 @@
+<div>
+
+  <form name="commentForm" class="comments-form" ng-submit="$ctrl.sendComment(commentForm.$valid)" novalidate>
+    <div class="form-group">
+      <label for="comment">Commentario</label>
+      <input type="text" name="comment" class="form-control" ng-model="$ctrl.newComment" required/>
+    </div>
+    <button type="submit" class"btn btn-primary">ENVIAR</button>
+  </form>
+
+  <div ng-repeat="comment in $ctrl.comments" class="comment">
+    {{comment.message}}
+    <button class="comment-delete" ng-click="$ctrl.deleteComment(comment.id)">Borrar</button>
+    <button class="comment-save">Guardar</button>
+  </div>
+
+</div>

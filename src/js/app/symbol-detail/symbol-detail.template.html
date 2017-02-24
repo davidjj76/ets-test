@@ -10,7 +10,7 @@
         <h3>{{$ctrl.symbol.region | names:'name'}}</h3>
         <h3>{{$ctrl.symbol.risk_family | names:'name'}}</h3>
         <h3>{{$ctrl.symbol.sector | names:'name'}}</h3>
-        <div>{{$ctrl.symbols}}</div>
         <line-chart prices="{{$ctrl.symbol.prices}}" currency="{{$ctrl.symbol.currency.symbol}}"></line-chart>
+        <comments-form symbol-id="{{$ctrl.symbol.id}}"></comments-form>
     </div>
 </div>
