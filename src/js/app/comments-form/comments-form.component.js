@@ -10,7 +10,7 @@ angular.
     bindings: {
       symbolId: "@"
     },
-    controller: ['Comment', 
+    controller: ['Comment',
       function CommentsFormController(Comment) {
 
         var self = this;
