@@ -21,13 +21,13 @@ component('lineChart', {
 
       this.$onInit = function() {
 
-        var svgWidth = 960;
+        var svgWidth = 900;
         var svgHeight = 500;
 
         // Init line chart
         svg = d3.select($element[0]).append('svg').
-                 style("width", svgWidth).
-                 style("height", svgHeight);
+                 attr("viewBox", "0 0 " + svgWidth + " " + svgHeight).
+                 attr("preserveAspectRatio", "xMidYMid meet");
         margin = {top: 20, right: 20, bottom: 30, left: 50};
         width = svgWidth - margin.left - margin.right;
         height = svgHeight - margin.top - margin.bottom;
@@ -67,7 +67,6 @@ component('lineChart', {
           g.append("g")
               .call(d3.axisLeft(y))
               .append("text")
-              .attr("fill", "#000")
               .attr("transform", "rotate(-90)")
               .attr("y", 6)
               .attr("dy", "0.71em")
@@ -76,11 +75,7 @@ component('lineChart', {
 
           g.append("path")
               .datum(data)
-              .attr("fill", "none")
-              .attr("stroke", "steelblue")
-              .attr("stroke-linejoin", "round")
-              .attr("stroke-linecap", "round")
-              .attr("stroke-width", 1.5)
+              .attr("class", "line")
               .attr("d", line);
         };
       }

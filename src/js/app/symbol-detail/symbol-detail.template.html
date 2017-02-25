@@ -1,16 +1,66 @@
-<div class="container-fluid">
-    <div class="row">
-        <h1>{{$ctrl.symbol.name}}</h1>
-        <h2>{{$ctrl.symbol.currency.name + '(' + $ctrl.symbol.currency.symbol + ')'}}</h2>
-        <a ng-show="!$ctrl.firstSymbol" href="#!/symbols/{{$ctrl.previousSymbol.id}}">{{$ctrl.previousSymbol.name}}</a>
-        <a href="#!/symbols">Volver al listado</a>
-        <a ng-show="!ctrl.lastSymbol" href="#!/symbols/{{$ctrl.nextSymbol.id}}">{{$ctrl.nextSymbol.name}}</a>
-        <h3>{{$ctrl.symbol.issuer.name}}</h3>
-        <h3>{{$ctrl.symbol.isin}}</h3>
-        <h3>{{$ctrl.symbol.region | names:'name'}}</h3>
-        <h3>{{$ctrl.symbol.risk_family | names:'name'}}</h3>
-        <h3>{{$ctrl.symbol.sector | names:'name'}}</h3>
-        <line-chart prices="{{$ctrl.symbol.prices}}" currency="{{$ctrl.symbol.currency.symbol}}"></line-chart>
-        <comments-form symbol-id="{{$ctrl.symbol.id}}"></comments-form>
+<!-- Symbol detail -->
+<div layout="column" ng-cloak class="container" layout-file>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            Symbol detail
+        </div>
+    </md-toolbar>
+    <div layout="column" layout-gt-xs="row" layout-align="space-around">
+        <md-button class="md-primary" ng-disabled="$ctrl.firstSymbol" ng-href="#!/symbols/{{$ctrl.previousSymbol.id}}">
+            &lt; Previous</md-button>
+        <md-button class="md-primary" ng-href="#!/symbols">Symbols list</md-button>
+        <md-button class="md-primary" ng-disabled="$ctrl.lastSymbol" ng-href="#!/symbols/{{$ctrl.nextSymbol.id}}">Next &gt;</md-button>
     </div>
+    <md-content flex>
+        <md-card>
+            <md-card-header>
+                <md-card-header-text>
+                    <span class="md-title">{{$ctrl.symbol.name}}</span>
+                    <span class="md-subhead">{{$ctrl.symbol.isin}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-divider></md-divider>
+            <div layout="column" layout-gt-xs="row" layout-wrap>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <p>Issuer</p>
+                        <h4>{{$ctrl.symbol.issuer.name}}</h4>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <p>Currency</p>
+                        <h4>{{$ctrl.symbol.currency.name + '(' + $ctrl.symbol.currency.symbol + ')'}}</h4>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <p>Region</p>
+                        <h4>{{$ctrl.symbol.region | names:'name'}}</h4>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <p>Risk Family</p>
+                        <h4>{{$ctrl.symbol.risk_family | names:'name'}}</h4>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text">
+                        <p>Sector</p>
+                        <h4>{{$ctrl.symbol.sector | names:'name'}}</h4>
+                    </div>
+                </md-list-item>
+            </div>
+            <div layout="row" layout-align="center">
+                <p class="md-subhead">Price evolution</p>
+            </div>
+            <line-chart prices="{{$ctrl.symbol.prices}}" currency="{{$ctrl.symbol.currency.symbol}}"></line-chart>
+        </md-card>
+    </md-content>
+    <md-content flex>
+        <md-card>
+            <comments-form symbol-id="{{$ctrl.symbol.id}}"></comments-form>
+        </md-card>
+    </md-content>
 </div>
