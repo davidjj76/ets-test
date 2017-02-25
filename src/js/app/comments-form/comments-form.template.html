@@ -1,17 +1,35 @@
+<div layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+        <div>
+            <form name="$ctrl.commentsForm" ng-submit="$ctrl.sendComment()" novalidate>
+                <md-input-container class="md-block">
+                    <label>Name</label>
+                    <input required md-no-asterisk name="author" ng-model="$ctrl.author" md-maxlength="20"></input>
+                    <div ng-messages="$ctrl.commentsForm.author.$error">
+                        <div ng-message="required">Name is required!</div>
+                        <div ng-message="md-maxlength">Name is too long!</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Message</label>
+                    <textarea required md-no-asterisk name="message" ng-model="$ctrl.message" md-maxlength="150" rows="3"></textarea>
+                    <div ng-messages="$ctrl.commentsForm.message.$error">
+                        <div ng-message="required">Message is required!</div>
+                        <div ng-message="md-maxlength">Message is too long!</div>
+                    </div>
+                </md-input-container>
+                <div layout="row" layout-align="end">
+                    <md-button type="submit" class="md-raised md-accent" ng-disabled="$ctrl.commentsForm.$invalid">send</md-button>
+                </div>
+            </form>
+        </div>
+    </md-content>
+</div>
 <div>
-
-  <form name="commentForm" class="comments-form" ng-submit="$ctrl.sendComment(commentForm.$valid)" novalidate>
-    <div class="form-group">
-      <label for="comment">Comentario</label>
-      <input type="text" name="comment" class="form-control" ng-model="$ctrl.newComment" required/>
+    <div ng-repeat="comment in $ctrl.comments" class="comment">
+        <span ng-bind="comment.message"></span>
+        <span ng-bind="comment.author"></span>
+        <button class="comment-delete" ng-click="$ctrl.deleteComment(comment.id)">Borrar</button>
+        <button class="comment-save">Guardar</button>
     </div>
-    <button type="submit" class"btn btn-primary">ENVIAR</button>
-  </form>
-
-  <div ng-repeat="comment in $ctrl.comments" class="comment">
-    <span ng-bind="comment.message"></span>
-    <button class="comment-delete" ng-click="$ctrl.deleteComment(comment.id)">Borrar</button>
-    <button class="comment-save">Guardar</button>
-  </div>
-
 </div>

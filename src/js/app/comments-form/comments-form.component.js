@@ -22,15 +22,21 @@ angular.
           }
         }
 
-        self.sendComment = function(isValid) {
-          if(isValid) {
+        self.sendComment = function() {
+          var form = self.commentsForm;
+          if(form.$valid) {
             var commentId = shortid.generate();
             self.comments = Comment.save(self.symbolId , commentId, {
               id: commentId,
-              message: self.newComment,
+              author: self.author,
+              message: self.message,
               date: new Date()
             });
-            self.newComment = '';            
+            // Reset form
+            self.author = '';
+            self.message = '';
+            form.$setPristine();
+            form.$setUntouched();
           }
         }
 

@@ -73,10 +73,20 @@ component('lineChart', {
               .attr("text-anchor", "end")
               .text("Price (" + changes.currency.currentValue + ")");
 
-          g.append("path")
+          var path = g.append("path")
               .datum(data)
               .attr("class", "line")
               .attr("d", line);
+
+          // Line animation
+          var totalLength = path.node().getTotalLength();
+          path
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(1000)
+            .attr("stroke-dashoffset", 0);
+
         };
       }
     }] 
