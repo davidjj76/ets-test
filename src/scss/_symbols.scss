@@ -5,6 +5,10 @@ $max_width: 960px;
   max-width: $max_width; 
 }
 
+md-content {
+  background-color: white;
+}
+
 .symbol-list-filters {
   padding: 20px;
   text-align: center;
@@ -12,4 +16,8 @@ $max_width: 960px;
 
 .symbol-list-items {
   padding: 0;
+}
+
+.date {
+  font-size: 0.8em;
 }

@@ -1,8 +1,32 @@
-.line {
-  stroke: steelblue;
+$line-color: rgb(33,150,243);
+
+.axis path,
+.axis line {
   fill: none;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-width: 1.5;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: $line-color;
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: $line-color;
+}
+
+.focus text {
+  font-size: 10px;
+}

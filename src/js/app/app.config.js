@@ -19,3 +19,16 @@ angular.
         otherwise('/symbols');
     }
   ]);
+
+angular.
+  module('etsApp').
+  config(['$mdThemingProvider', 
+    function($mdThemingProvider) {
+      $mdThemingProvider
+        .theme('default')
+        .primaryPalette('blue')
+        .accentPalette('pink')
+        .warnPalette('red')
+        .backgroundPalette('grey');
+    }
+]);

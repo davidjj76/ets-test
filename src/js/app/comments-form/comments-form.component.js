@@ -44,5 +44,23 @@ angular.
           self.comments = Comment.remove(self.symbolId , commentId);
         }
 
+        self.updateComment = function(commentId, author, message) {
+          self.comments = Comment.save(self.symbolId , commentId, {
+              id: commentId,
+              author: author,
+              message: message,
+              date: new Date()            
+          });                        
+        }
+
+        self.validateComment = function(newMessage) {
+          if(!newMessage) {
+            return "Message is required!"
+          } else if (newMessage.length > 150) {
+            return "Message is too long!"
+          } else {
+            return true;
+          }
+        }
     }
   ]});

@@ -55,12 +55,10 @@
             <div layout="row" layout-align="center">
                 <p class="md-subhead">Price evolution</p>
             </div>
-            <line-chart prices="{{$ctrl.symbol.prices}}" currency="{{$ctrl.symbol.currency.symbol}}"></line-chart>
+            <line-chart prices="{{$ctrl.symbol.prices}}"></line-chart>
         </md-card>
     </md-content>
     <md-content flex>
-        <md-card>
-            <comments-form symbol-id="{{$ctrl.symbol.id}}"></comments-form>
-        </md-card>
+        <comments-form symbol-id="{{$ctrl.symbol.id}}"></comments-form>
     </md-content>
 </div>

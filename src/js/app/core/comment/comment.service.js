@@ -9,7 +9,6 @@ angular.
     function(localStorageService) {
 
       return {
-        
         query: function(symbolId) {
           var commentKey = 'comment-' + symbolId + '-';
           return localStorageService.keys()
@@ -20,16 +19,14 @@ angular.
                     return localStorageService.get(item);
                   }).
                   sort(function(a, b) {
-                    return new Date(a.date) - new Date(b.date);
+                    return new Date(b.date) - new Date(a.date);
                   });
         },
-
         save: function(symbolId, commentId, comment) {
           var key = 'comment-' + symbolId + '-' + commentId;
           localStorageService.set(key, comment);
           return this.query(symbolId);
         },
-
         remove: function(symbolId, commentId) {
           var key = 'comment-' + symbolId + '-' + commentId;
           localStorageService.remove(key);
