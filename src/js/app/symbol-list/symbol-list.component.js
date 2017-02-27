@@ -11,7 +11,10 @@ angular.
 
         var self = this;
 
-        self.filterSymbol = function() {
+        this.loading = true;
+        this.error = false;
+
+        this.filterSymbol = function() {
           return function (symbol) {
               if (self.currencies && self.risk_families) {
                 return (self.currencies.indexOf(symbol.currency) !== -1 && 
@@ -20,11 +23,19 @@ angular.
           };
         }
 
-        Symbol.query(function(symbols) {
-          self.symbols = symbols;
-          appGlobals.symbols = self.symbols.map(function(symbol) {
-            return { id: symbol.id, name: symbol.name}
+        Symbol.query().$promise
+          .then(function(symbols) {
+            self.symbols = symbols;
+            appGlobals.symbols = self.symbols.map(function(symbol) {
+              return { id: symbol.id, name: symbol.name};
+            })
+          })
+          .catch(function(err) {
+            self.error = true;
+            console.log(err);
+          })
+          .finally(function() {
+            self.loading = false;
           });
-        });
       }
   ]});

@@ -15,45 +15,83 @@ angular.
 
         var self = this;
 
-        self.$onChanges = function(changes) {
+        this.sending = false;
+
+        this.$onChanges = function(changes) {
           if(changes.symbolId.currentValue) {
             self.symbolId = changes.symbolId.currentValue;
-            self.comments = Comment.query(self.symbolId);
+            Comment.query(self.symbolId)
+              .then(function(comments) {
+                self.comments = comments; 
+              })
+              .catch(function(err) {
+                console.log(err);
+              });
           }
         }
 
-        self.sendComment = function() {
+        this.sendComment = function() {
           var form = self.commentsForm;
           if(form.$valid) {
             var commentId = shortid.generate();
-            self.comments = Comment.save(self.symbolId , commentId, {
+            var comment = {
               id: commentId,
               author: self.author,
               message: self.message,
               date: new Date()
-            });
-            // Reset form
-            self.author = '';
-            self.message = '';
-            form.$setPristine();
-            form.$setUntouched();
+            };
+            self.saveComment(comment);
           }
         }
 
-        self.deleteComment = function(commentId) {
-          self.comments = Comment.remove(self.symbolId , commentId);
+        this.deleteComment = function(commentId) {
+          // Disable delete button
+          self.sending = true;
+          Comment.remove(self.symbolId , commentId)
+            .then(function(commentId) {
+              return Comment.query(self.symbolId);
+            })
+            .then(function(comments) {
+              self.comments = comments;
+            })
+            .catch(function(err) {
+              console.log(err);              
+            })
+            .finally(function() {
+              self.sending = false;
+            });
         }
 
-        self.updateComment = function(commentId, author, message) {
-          self.comments = Comment.save(self.symbolId , commentId, {
+        this.updateComment = function(commentId, author, message) {
+          var comment = {
               id: commentId,
               author: author,
               message: message,
               date: new Date()            
-          });                        
+          };
+          self.saveComment(comment);
         }
 
-        self.validateComment = function(newMessage) {
+        this.saveComment = function(comment) {
+          // Disable send button
+          self.sending = true;
+          Comment.save(self.symbolId , comment.id, comment)
+            .then(function(comment) {
+              self.resetForm();
+              return Comment.query(self.symbolId);
+            })
+            .then(function(comments) {
+              self.comments = comments;
+            })
+            .catch(function(err) {
+              console.log(err);
+            })
+            .finally(function() {
+              self.sending = false;
+            });
+        }
+
+        this.validateComment = function(newMessage) {
           if(!newMessage) {
             return "Message is required!"
           } else if (newMessage.length > 150) {
@@ -62,5 +100,15 @@ angular.
             return true;
           }
         }
+
+        this.resetForm = function() {
+          // Reset form
+          var form = self.commentsForm;
+          self.author = '';
+          self.message = '';
+          form.$setPristine();
+          form.$setUntouched();
+        }
+
     }
   ]});

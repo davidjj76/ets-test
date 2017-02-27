@@ -21,3 +21,14 @@ md-content {
 .date {
   font-size: 0.8em;
 }
+
+.loading {
+  margin: 40px;
+  md-progress-circular {
+    margin: 20px;
+  }
+}
+
+.error {
+  margin: 40px;
+}
