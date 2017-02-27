@@ -71,12 +71,12 @@ gulp.task('default', [
 // sass compile task
 gulp.task(sassConfig.taskName, function() {
 	gulp.src(sassConfig.entryPoint)
-	.pipe(sourcemaps.init())
+	//.pipe(sourcemaps.init())
 	.pipe(sass({ includePaths: sassConfig.includePaths }).on('error', function(error) {
 		return notify().write(error);
 	}))
 	.pipe(postcss([autoprefixer(), cssnano()]))
-	.pipe(sourcemaps.write('./'))	
+	//.pipe(sourcemaps.write('./'))	
 	.pipe(gulp.dest(sassConfig.dest))
 	.pipe(browserSync.stream())
 	.pipe(notify('SASS Compiled!!!'));
@@ -91,12 +91,12 @@ gulp.task(jsConfig.taskName, function() {
 		});
 	}))
 	.pipe(buffer())
-	.pipe(sourcemaps.init({ loadMaps: true }))
+	//.pipe(sourcemaps.init({ loadMaps: true }))
 	.pipe(embedTemplates({ skipErrors: true }))
 	.pipe(gulp.dest(jsConfig.dest))
 	.pipe(rename(uglifyConfig.uglifyFile))
 	.pipe(uglify())
-	.pipe(sourcemaps.write('./'))
+	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(uglifyConfig.dest))	
 	.pipe(notify('JS Concatenated & Minified!!!'))
 	.pipe(browserSync.stream());
